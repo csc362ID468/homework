@@ -1,0 +1,34 @@
+<!--fundamentals1.html-->
+<!--this file calculates factors of a number and stores it in an array.
+Next, it draws a circle with a radius equilvalent to each factor and cx of 10 times bigger than each factor-->
+
+<body>
+    <svg id="chart" width="600" height="300"></svg>
+    <script src="https://d3js.org/d3.v5.min.js"> </script>
+    <script>
+        function factors(num) {
+            const arr = [];
+            //returns an array of num's factor
+            for(let i=1;i<=num;i++){
+                const factor = num/i;
+                if (Number.isInteger(factor)) {
+                    arr.push(factor); 
+                }
+            }
+            return arr;
+        }
+        d3.select("#chart")             //selects the svg elementt by id 
+            .selectAll("circle")        //declares the elements we would like to creatte
+            .data(factors(24))                //sets the data to drive the creation of the elements
+            .enter()                    //creates a selection to add elements per data item
+            .append("circle")           //appends an element of this type to each data item
+                .attr("r",d => d)           //circle element is a child of the <svg> element
+                .attr("cy", 100)
+                .attr("cx", d => d*10)
+                .style("fill","LightBlue")
+                .style("stroke","CadetBlue")
+                .style("stroke-width",3)
+            
+        
+    </script>
+</body>

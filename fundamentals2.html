@@ -1,0 +1,35 @@
+<!--fundamentals2.html-->
+<!--This file takes an array and draws circles 100 pixels apart with radius equivalent to each array's element.
+Then 2 seconds later, the array is sorted and re-draws the circles.-->
+
+<body>
+    <svg id="chart" width="1000" height="300"></svg>
+    <script src="https://d3js.org/d3.v5.min.js"> </script>
+    <script>
+        const array = [92,56,14,73,22,38,93,45,55];
+        function inc(x,i){
+            return x+100*i;
+        }
+        d3.select("#chart")             //selects the svg elementt by id 
+            .selectAll("circle")        //declares the elements we would like to creatte
+            .data(array)                //sets the data to drive the creation of the elements
+            .enter()                    //creates a selection to add elements per data item
+            .append("circle")           //appends an element of this type to each data item
+                .attr("r", d=> d/2)           //circle element is a child of the <svg> element
+                .attr("cy", 150)
+                .attr("cx", d=>inc(50,array.indexOf(d)))
+                .style("fill","LightBlue")
+                .style("stroke","CadetBlue")
+                .style("stroke-width",3)
+
+        setTimeout(function(){
+            d3.select("#chart").selectAll("circle")
+                .data(array.sort())
+                .transition().duration(1500)        //defualt duration is quarter of a second
+                    .attr("r",d=>d/2)
+                    .attr("cx",d=>inc(50,array.indexOf(d)))
+                    .style("fill","CadetBlue")
+                    .style("stroke","LightBlue")
+        },2000)
+    </script>
+</body>

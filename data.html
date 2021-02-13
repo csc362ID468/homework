@@ -1,0 +1,77 @@
+<!-- CSC362ID468
+-->
+<body>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+
+  <!-- Set up basic webpage structure -->
+  <div id="header"></div>
+  <div id="nominal"></div>
+  <div id="ordinal"></div>
+  <div id="interval"></div>
+  <div id="ratio"></div>
+
+  <style>
+    .red {
+        color: rgb(248, 210, 210);
+        background-color: #e41a1c;
+    }
+    .green {
+        color: #d7f0d7;
+        background-color: #0d3609;
+    }
+    .blue {
+        color: rgb(207, 241, 247);
+        background-color: #377eb8;
+    }
+    .purple {
+        color: #e3bae9;
+        background-color: #984ea3;
+    }
+  </style>
+
+  <script>
+    //header
+    const head = d3.select("#header");
+    head.insert("h1") //attach a header
+        .text("Data Types") //write out text
+        .style('border','solid #377eb8 2px')//draws blue border around <div>
+        .style('color','#214b6e'); 
+    
+    //nominal
+    const nom = d3.select("#nominal");
+    nom.insert("h2") //attach a header
+        .text("Nominal ") //write out text
+        .attr("class","red");
+    nom.append("p")
+        .text("Nominal scale can be easily understood as 'names' or 'labels'. It contains no quantitative value. For example, if someone asks you a question regarding your favorite fruit and gives you two suggested answers such as apple or orange, the question is in a nominal scale.");
+
+    //ordinal
+    const ord = d3.select("#ordinal");
+    ord.append("h2") //attach a header
+        .text("Ordinal ") //write out text
+        .style('font-variant','small-caps')
+        .attr("class","green");
+    ord.append("p")
+        .text("Ordinal scale concerns the order of values but does not concern the differences in between those values. For example, if a question asks you how much you like apples, and gives you suggested answers consisting such as 1-Not at all, 2-A little, 3-Neutral, 4-A fair amount, 5-A lot, we do not know the exact difference between 5-A lot and 4- a fair amount. ");
+
+    //interval
+    d3.select("#interval").append("h2") //attach a header
+        .text("Interval ") //write out text
+        .style('font-variant','small-caps')
+        .attr("class","blue");
+    d3.select("#interval").append("p")
+        .text("Interval scale is an upgrade from ordinal, informed with the exact differences between values. For example, if an apple were to go through a quality check and scored between 0 -100, it uses an interval scale since values between each score is meaningful and there is a true zero.");
+
+    //ratio
+    d3.select("#ratio").append("h2") //attach a header
+        .text("Ratio ") //write out text
+        .style('font-variant','small-caps')
+        .attr("class","purple");
+    d3.select("#ratio").append("p")
+        .text("Compared to interval scales, ratio scales have a true zero. For example, if someone asks you a question on how many apples you eat in a day, you can answer 0 apples, 1 apples, and etc. The difference is 1 apple of each interval and there is a true zero of never eating apples.");
+    
+    const allParagraphs =  d3.selectAll("p");
+    allParagraphs.style('color','#214b6e');
+  </script>
+
+</body>
